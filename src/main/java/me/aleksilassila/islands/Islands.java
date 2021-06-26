@@ -7,7 +7,6 @@ import me.aleksilassila.islands.generation.IslandGeneration;
 import me.aleksilassila.islands.utils.ConfirmItem;
 import me.aleksilassila.islands.utils.Messages;
 import me.aleksilassila.islands.utils.Permissions;
-import me.aleksilassila.islands.utils.UpdateChecker;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.*;
@@ -67,19 +66,6 @@ public class Islands extends JavaPlugin {
         if (worldEdit == null) {
             getLogger().severe("No WorldEdit found. Island saving to schematic files disabled.");
         }
-
-        new UpdateChecker(this, 84303).getVersion(version -> {
-            String majorVersion = version.substring(0,version.lastIndexOf("."));
-            String thisMajorVersion = this.getDescription().getVersion().substring(0, this.getDescription().getVersion().lastIndexOf("."));
-
-            if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                getLogger().info("You are up to date.");
-            } else if (!majorVersion.equalsIgnoreCase(thisMajorVersion)) {
-                getLogger().warning("There's a new major update available!");
-            } else {
-                getLogger().info("There's a new minor update available!");
-            }
-        });
 
         if (new File(getDataFolder() + "/config.yml").exists()) {
             if (!validateConfig()) {
