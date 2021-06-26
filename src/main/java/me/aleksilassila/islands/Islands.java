@@ -92,7 +92,6 @@ public class Islands extends JavaPlugin {
         definedIslandSizes = setupSizes();
 
         int pluginId = 8974;
-        new Metrics(this, pluginId);
 
         getLogger().info("Islands enabled!");
 
