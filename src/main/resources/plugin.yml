@@ -1,6 +1,6 @@
 name: Islands
-version: 5.0.6
-author: Aleksi Lassila
+version: 5.0.7
+authors: ["Aleksi Lassila", "dan.#0402"]
 main: me.aleksilassila.islands.Islands
 api-version: 1.15
 softdepend: [Vault, WorldEdit, GriefPrevention]
