@@ -1,4 +1,5 @@
 # Islands
+
 A spigot plugin for creating floating island homes with different biomes.
 Optimized for survival gamemode. **This is not a skyblock plugin!**
 Jumping down from an island teleports player to survival "wilderness", 
@@ -8,6 +9,10 @@ This plugin is designed to function as your server's core plugin:
 For example it handles protection, homes, teleports / warps and has economy integration with handy GUIs for performing tasks.
 
 If you want to experience the plugin in game and have an awesome gaming experience, you can hop on crackcraftsmp.apexmc.co! (1.16.4)
+
+## Note
+All edits made by me are for [Secure Heaven](https://secure-heaven.com/).
+This is not designed to be used outside SH as the edits are specific to our needs.
 
 ## Features
 "Okay cool, islands. What's the point?" Here are some problems that this plugin solves.
