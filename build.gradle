@@ -1,0 +1,62 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+group 'me.aleksilassila.islands.Islands'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'maven-publish'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'}
+    maven { url 'https://maven.enginehub.org/repo/'}
+}
+
+dependencies {
+    // Server APIs
+    compileOnly 'org.spigotmc:spigot-api:1.16.4-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot:1.16.4-R0.1-SNAPSHOT'
+
+    // Util APIS
+    compile 'com.github.stefvanschie.inventoryframework:IF:0.9.9'
+
+    // Plugin APIs
+    compileOnly 'com.github.TechFortress:GriefPrevention:16.17.1'
+    compileOnly 'com.github.MilkBowl:VaultAPI:1.7'
+    compileOnly 'com.sk89q.worldedit:worldedit-bukkit:7.2.0'
+
+    // Who knows what this is
+    compileOnly 'org.jetbrains:annotations:20.1.0'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+}
+
+processResources {
+//    expand project.properties
+}
+
+shadowJar {
+    relocate 'com.github.stefvanschie.inventoryframework', 'me.aleksilassila.islands.inventoryframework'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
