@@ -16,6 +16,8 @@ import org.bukkit.event.world.TimeSkipEvent;
 
 import java.util.Date;
 
+import static me.aleksilassila.islands.utils.Utils.getIslandFromBlock;
+
 public class Listeners extends ChatUtils implements Listener {
     private final Islands plugin;
 
@@ -81,7 +83,10 @@ public class Listeners extends ChatUtils implements Listener {
         boolean canFlow = IslandsConfig.isBlockInWaterFlowArea(
                 event.getToBlock().getX(), event.getToBlock().getY(), event.getToBlock().getZ());
 
-        if(!canFlow) {
+        IslandsConfig.Entry islandConfig = getIslandFromBlock(event.getBlock());
+        if (islandConfig == null) return;
+
+        if(!canFlow && !islandConfig.allowWaterFlow) {
             event.setCancelled(true);
         }
     }

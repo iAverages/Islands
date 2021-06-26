@@ -338,6 +338,7 @@ public enum IslandsConfig {
         public int y;
         public int[] spawnPosition;
         public boolean isSpawn;
+        public boolean allowWaterFlow;
 
         boolean shouldUpdate = false;
 
@@ -364,6 +365,7 @@ public enum IslandsConfig {
             };
             this.y = fc.getInt(islandId + ".y");
             this.isSpawn = fc.getBoolean(islandId + ".isSpawn", false);
+            this.allowWaterFlow = fc.getBoolean(islandId + ".allowWaterFlow", false);
 
             this.claimId = fc.getLong(islandId + ".claimId", -1);
 
@@ -397,6 +399,7 @@ public enum IslandsConfig {
 
             this.isPublic = false;
             this.isSpawn = false;
+            this.allowWaterFlow = false;
 
         }
 
@@ -434,6 +437,7 @@ public enum IslandsConfig {
 
             getConfig().set(islandId + ".claimId", claimId);
             getConfig().set(islandId + ".isSpawn", isSpawn);
+            getConfig().set(islandId + ".allowWaterFlow", allowWaterFlow);
         }
 
         public void setSpawnPosition(int x, int z) {
@@ -450,6 +454,11 @@ public enum IslandsConfig {
                     highest + 80,
                     spawnPosition[1]
             );
+        }
+
+        public void setAllowWaterFlow(Boolean val) {
+            this.allowWaterFlow = val;
+            shouldUpdate = true;
         }
 
         public void unnameIsland() {

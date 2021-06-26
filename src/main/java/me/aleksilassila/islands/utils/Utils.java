@@ -1,10 +1,15 @@
 package me.aleksilassila.islands.utils;
 
 import javax.annotation.Nullable;
+
+import me.aleksilassila.islands.Islands;
+import me.aleksilassila.islands.IslandsConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,6 +43,14 @@ public class Utils {
          }
 
          return targetBiome;
+    }
+
+    public static IslandsConfig.Entry getIslandFromBlock(Block block) {
+        if (!block.getWorld().equals(Islands.islandsWorld)) {
+            return null;
+        }
+
+        return IslandsConfig.getEntry(block.getLocation().getBlockX(), block.getLocation().getBlockZ(), true);
     }
 
     public static int[][] randomStalactitePositions(int size, double spacing) {
