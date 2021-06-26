@@ -5,13 +5,15 @@ import me.aleksilassila.islands.IslandsConfig;
 import me.aleksilassila.islands.commands.Subcommand;
 import me.aleksilassila.islands.utils.Messages;
 import me.aleksilassila.islands.utils.Permissions;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
 public class ToggleWaterSubcommand extends Subcommand {
     @Override
-    public void onCommand(Player player, String[] args, boolean confirmed) {
+    public void onCommand(CommandSender commandSender, String[] args, boolean confirmed) {
+        Player player = (Player) commandSender;
         IslandsConfig.Entry island = getIsland(player);
         if (island == null) return;
         island.setAllowWaterFlow(!island.allowWaterFlow);
@@ -57,5 +59,10 @@ public class ToggleWaterSubcommand extends Subcommand {
     @Override
     public String getPermission() {
         return Permissions.command.toggleWater;
+    }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
     }
 }

@@ -82,7 +82,8 @@ public class TeleportCommands {
         }
 
         @Override
-        public void onCommand(Player player, String[] args, boolean confirmed) {
+        public void onCommand(CommandSender commandSender, String[] args, boolean confirmed) {
+            Player player = (Player) commandSender;
             onCommand(player, null, "homes", args);
         }
 
@@ -104,6 +105,11 @@ public class TeleportCommands {
         @Override
         public String getPermission() {
             return Permissions.command.listHomes;
+        }
+
+        @Override
+        public Boolean consoleOnly() {
+            return null;
         }
 
         @Override
@@ -237,7 +243,8 @@ public class TeleportCommands {
         }
 
         @Override
-        public void onCommand(Player player, String[] args, boolean confirmed) {
+        public void onCommand(CommandSender commandSender, String[] args, boolean confirmed) {
+            Player player = (Player) commandSender;
             onCommand(player, null, "home", args);
         }
 
@@ -259,6 +266,11 @@ public class TeleportCommands {
         @Override
         public String getPermission() {
             return Permissions.command.home;
+        }
+
+        @Override
+        public Boolean consoleOnly() {
+            return null;
         }
 
         private void teleportNeutrals(Player player, Location location) {

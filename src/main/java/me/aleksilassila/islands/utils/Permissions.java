@@ -40,5 +40,6 @@ public class Permissions {
         public static final String listHomes = "islands.command.home.list";
         public static final String visit = "islands.command.visit";
         public static final String toggleWater = "islands.command.togglewater";
+        public static final String resize = "islands.command.resize";
     }
 }

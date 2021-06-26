@@ -62,4 +62,9 @@ public class NameSubcommand extends AbstractIslandsWorldSubcommand {
     public String getPermission() {
         return Permissions.command.name;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }

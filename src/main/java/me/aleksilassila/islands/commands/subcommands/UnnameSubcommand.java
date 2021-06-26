@@ -41,4 +41,9 @@ public class UnnameSubcommand extends AbstractIslandsWorldSubcommand {
     public String getPermission() {
         return Permissions.command.unname;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }

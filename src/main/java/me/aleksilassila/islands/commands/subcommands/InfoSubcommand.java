@@ -74,4 +74,9 @@ public class InfoSubcommand extends AbstractIslandsWorldSubcommand {
     public String getPermission() {
         return Permissions.command.info;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }

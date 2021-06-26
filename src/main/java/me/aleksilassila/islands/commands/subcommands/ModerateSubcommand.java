@@ -8,6 +8,7 @@ import me.aleksilassila.islands.utils.Messages;
 import me.aleksilassila.islands.utils.Permissions;
 import me.aleksilassila.islands.utils.Utils;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.List;
 
 public class ModerateSubcommand extends Subcommand {
     @Override
-    public void onCommand(Player player, String[] args, boolean confirmed) {
+    public void onCommand(CommandSender commandSender, String[] args, boolean confirmed) {
+        Player player = (Player) commandSender;
         if (args.length < 2) {
             new AdminGUI(player).open();
             return;
@@ -71,5 +73,10 @@ public class ModerateSubcommand extends Subcommand {
     @Override
     public String getPermission() {
         return Permissions.command.moderate;
+    }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
     }
 }

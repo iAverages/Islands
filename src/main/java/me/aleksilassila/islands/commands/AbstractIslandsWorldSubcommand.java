@@ -3,6 +3,7 @@ package me.aleksilassila.islands.commands;
 import me.aleksilassila.islands.Islands;
 import me.aleksilassila.islands.IslandsConfig;
 import me.aleksilassila.islands.utils.Messages;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -12,7 +13,8 @@ public abstract class AbstractIslandsWorldSubcommand extends Subcommand {
     protected abstract void runCommand(Player player, String[] args, boolean confirmed, IslandsConfig.Entry island);
 
     @Override
-    public void onCommand(Player player, String[] args, boolean confirmed) {
+    public void onCommand(CommandSender commandSender, String[] args, boolean confirmed) {
+        Player player = (Player) commandSender;
         if (!player.getWorld().equals(Islands.islandsWorld)) {
             Messages.send(player, "error.WRONG_WORLD");
             return;

@@ -7,6 +7,7 @@ import me.aleksilassila.islands.utils.Messages;
 import me.aleksilassila.islands.utils.Permissions;
 import org.bukkit.Location;
 import org.bukkit.block.Biome;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ public abstract class AbstractCreateSubcommands extends Subcommand {
     }
 
     @Override
-    public void onCommand(Player player, String[] args, boolean confirmed) {
+    public void onCommand(CommandSender commandSender, String[] args, boolean confirmed) {
+        Player player = (Player) commandSender;
         if (args.length == 0) {
             openGui(player);
             return;

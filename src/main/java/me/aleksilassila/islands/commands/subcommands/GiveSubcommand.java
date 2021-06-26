@@ -75,4 +75,9 @@ public class GiveSubcommand extends AbstractIslandsWorldSubcommand {
     public List<String> onTabComplete(Player player, String[] args) {
         return null;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }

@@ -40,6 +40,7 @@ public class IslandCommands extends ChatUtils implements TabExecutor {
         subcommands.add(new InfoSubcommand());
         subcommands.add(new ModerateSubcommand());
         subcommands.add(new ToggleWaterSubcommand());
+        subcommands.add(new ResizeSubcommand());
 
         TeleportCommands teleportCommands = new TeleportCommands();
 
@@ -57,7 +58,31 @@ public class IslandCommands extends ChatUtils implements TabExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        // Handle console only commands
+        // Quickest way I could implement console only commands
+        // Without redoing all the commands
         if (!(sender instanceof Player)) {
+            if (args.length >= 1) {
+                Subcommand target = getSubcommand(args[0]);
+
+                if (target == null) {
+                    sender.sendMessage(Messages.get("error.SUBCOMMAND_NOT_FOUND"));
+                    getSubcommand("help").onCommand(sender, new String[0], true);
+                    return true;
+                }
+
+                try {
+                    target.onCommand(sender, Arrays.copyOfRange(args, 1, args.length), false);
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    sender.sendMessage(Messages.get("error.ERROR"));
+                    return true;
+                }
+            }
+
+            sender.sendMessage(Messages.get("info.VERSION_INFO", plugin.getDescription().getVersion()));
             return true;
         }
 
@@ -77,7 +102,7 @@ public class IslandCommands extends ChatUtils implements TabExecutor {
                 return true;
             }
 
-            if (target.getPermission() != null && !player.hasPermission(target.getPermission())) {
+            if ((target.getPermission() != null && !player.hasPermission(target.getPermission())) || target.consoleOnly()) {
                 player.sendMessage(Messages.get("error.NO_PERMISSION"));
                 return true;
             }
@@ -110,6 +135,7 @@ public class IslandCommands extends ChatUtils implements TabExecutor {
                 target.onCommand(player, Arrays.copyOfRange(args, 1, args.length), confirmed);
                 return true;
             } catch (Exception e) {
+                e.printStackTrace();
                 player.sendMessage(Messages.get("error.ERROR"));
                 return true;
             }
@@ -143,14 +169,14 @@ public class IslandCommands extends ChatUtils implements TabExecutor {
 
         if (args.length == 1) {
             for (Subcommand subcommand : subcommands) {
-                if (subcommand.getPermission() == null || player.hasPermission(subcommand.getPermission()))
+                if ((subcommand.getPermission() == null || player.hasPermission(subcommand.getPermission())) && !subcommand.consoleOnly())
                     availableArgs.add(subcommand.getName());
             }
         } else if (args.length > 1) {
             Subcommand currentSubcommand = getSubcommand(args[0]);
             if (currentSubcommand == null) return null;
 
-            if (currentSubcommand.getPermission() == null || player.hasPermission(currentSubcommand.getPermission()))
+            if ((currentSubcommand.getPermission() == null || player.hasPermission(currentSubcommand.getPermission()))  && !currentSubcommand.consoleOnly())
                 availableArgs = currentSubcommand.onTabComplete(player, Arrays.copyOfRange(args, 1, args.length));
         }
 

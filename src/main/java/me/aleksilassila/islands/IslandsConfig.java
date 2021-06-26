@@ -504,6 +504,23 @@ public enum IslandsConfig {
             shouldUpdate = true;
         }
 
+        /**
+         *  Updates the Island size without recreating it.
+         *  Updates both the config save and GP claim
+         * @param islandSize - New size for GP claim
+         */
+        public void resizeIsland(int islandSize) {
+            resizeClaim(islandSize);
+            size = islandSize;
+            height = islandSize;
+
+            shouldUpdate = true;
+        }
+
+        /**
+         * Updates the GP claim for an island
+         * @param islandSize - New size for GP claim
+         */
         public void resizeClaim(int islandSize) {
             int[][] ic = getIslandCorner(xIndex, zIndex, islandSize);
 

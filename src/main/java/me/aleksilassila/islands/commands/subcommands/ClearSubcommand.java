@@ -48,4 +48,9 @@ public class ClearSubcommand extends AbstractIslandsWorldSubcommand {
     public String getPermission() {
         return Permissions.command.clear;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }

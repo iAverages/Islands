@@ -2,13 +2,15 @@ package me.aleksilassila.islands.commands.subcommands;
 
 import me.aleksilassila.islands.commands.Subcommand;
 import me.aleksilassila.islands.utils.Permissions;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
 public class ConfirmSubcommand extends Subcommand {
     @Override
-    public void onCommand(Player player, String[] args, boolean confirmed) {
+    public void onCommand(CommandSender commandSender, String[] args, boolean confirmed) {
+        Player player = (Player) commandSender;
 
     }
 
@@ -30,5 +32,10 @@ public class ConfirmSubcommand extends Subcommand {
     @Override
     public String getPermission() {
         return Permissions.command.confirm;
+    }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
     }
 }

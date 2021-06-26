@@ -107,4 +107,9 @@ public class CreateSubcommand extends AbstractCreateSubcommands {
     public String getPermission() {
         return Permissions.command.create;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }

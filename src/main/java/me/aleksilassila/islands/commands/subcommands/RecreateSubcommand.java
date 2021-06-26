@@ -131,4 +131,9 @@ public class RecreateSubcommand extends AbstractCreateSubcommands {
     public String getPermission() {
         return Permissions.command.recreate;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }

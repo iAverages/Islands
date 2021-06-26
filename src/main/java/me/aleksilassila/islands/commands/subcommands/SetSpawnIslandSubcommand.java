@@ -27,4 +27,9 @@ public class SetSpawnIslandSubcommand extends AbstractIslandsWorldSubcommand {
     public String getPermission() {
         return Permissions.command.makeSpawnIsland;
     }
+
+    @Override
+    public Boolean consoleOnly() {
+        return false;
+    }
 }
