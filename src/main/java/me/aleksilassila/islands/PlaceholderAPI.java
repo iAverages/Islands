@@ -34,7 +34,7 @@ public class PlaceholderAPI extends PlaceholderExpansion {
     @NotNull
     @Override
     public String getIdentifier() {
-        return "sh";
+        return "islands";
     }
 
     @NotNull
